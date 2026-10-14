@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Product Details</title><link rel="stylesheet" href="/css/style.css"></head>
+<body><header><a class="logo" href="/">ShopEasy</a><nav><a href="/">Home</a><a href="/products">Products</a><a href="/cart/view">Cart</a></nav></header>
+<section class="detail"><div class="bigpic" th:text="${product.name.substring(0,1)}">P</div><div>
+<h1 th:text="${product.name}">Product</h1><p class="price">₹<span th:text="${product.price}">0</span></p>
+<p><b>Category:</b> <span th:text="${product.category}"></span></p><p th:text="${product.description}"></p>
+<p>Availability: <b>In Stock</b></p>
+<form th:action="@{'/cart/add/' + ${product.id}}" method="post"><button class="btn" type="submit">Add to Cart</button></form>
+</div></section></body></html>

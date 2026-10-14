@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Products</title><link rel="stylesheet" href="/css/style.css"></head>
+<body><header><a class="logo" href="/">ShopEasy</a><nav><a href="/">Home</a><a href="/products">Products</a><a href="/cart/view">Cart</a><a href="/login">Login</a></nav></header>
+<section class="section"><h1>Products</h1>
+<form class="filters" action="/products" method="get">
+<select name="category"><option value="">All Categories</option><option value="Clothing">Clothing</option><option value="Footwear">Footwear</option><option value="Bags">Bags</option><option value="Accessories">Accessories</option></select>
+<input type="number" name="maxPrice" placeholder="Max price">
+<button class="btn" type="submit">Filter</button><a class="btn light" href="/products">Clear</a>
+</form>
+<div class="grid"><div class="card" th:each="p : ${products}">
+<div class="pic" th:text="${p.name.substring(0,1)}">P</div><h3 th:text="${p.name}">Product</h3><p th:text="${p.category}">Category</p>
+<strong>₹<span th:text="${p.price}">0</span></strong><br>
+<a class="btn small" th:href="@{'/products/' + ${p.id}}">Details</a>
+<form th:action="@{'/cart/add/' + ${p.id}}" method="post" style="display:inline"><button class="btn small" type="submit">Add to Cart</button></form>
+</div></div></section></body></html>

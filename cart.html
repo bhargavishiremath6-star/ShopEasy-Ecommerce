@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cart</title><link rel="stylesheet" href="/css/style.css"></head>
+<body><header><a class="logo" href="/">ShopEasy</a><nav><a href="/products">Continue Shopping</a></nav></header>
+<section class="section"><h1>Your Cart</h1><div th:if="${products.isEmpty()}" class="empty">Your cart is empty.</div>
+<div class="cartrow" th:each="p : ${products}"><div><h3 th:text="${p.name}"></h3><p>₹<span th:text="${p.price}"></span> × <span th:text="${cart[p.id]}"></span></p></div>
+<form th:action="@{'/cart/remove/' + ${p.id}}" method="post"><button class="btn danger" type="submit">Remove</button></form></div>
+<div class="total" th:if="${!products.isEmpty()}">Total: ₹<span th:text="${total}">0</span></div>
+<a class="btn" th:if="${!products.isEmpty()}" href="/checkout">Proceed to Checkout</a></section></body></html>
